@@ -1,0 +1,23 @@
+{
+  "name": "sprint-5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "json-server --watch ./db/db.json --port 3005"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amarcilla/sprint-5.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amarcilla/sprint-5/issues"
+  },
+  "homepage": "https://github.com/amarcilla/sprint-5#readme",
+  "dependencies": {
+    "json-server": "^0.17.0"
+  }
+}
