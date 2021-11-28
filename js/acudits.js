@@ -1,6 +1,8 @@
+var reportJokes = [];
+
 // Exercici 1 i 2
 function nouacudit() {    
-    //const ul=document.createElement('ul');
+    
     let url = 'https://icanhazdadjoke.com/slack';
     // el fecth devuelve una promesa
 
@@ -38,3 +40,17 @@ function nouacudit() {
             console.warn('Something went wrong.', err);
         });
 }
+
+// Exercici 3
+function puntuaAcudit(score){    
+    // La data  valoració en format ISO.https://www.w3schools.com/Jsref/jsref_toisostring.asp
+    const d = new Date();
+    let text = d.toISOString();
+    //The . innerHTML property refers to the literal HTML markup that is, once assigned, interpreted and incorporated into the DOM (Document Object Model) for the current document. ... value property simply refers to the content of typically an HTML input control,
+    const p2 = document.getElementById("acudit").innerHTML;
+    // afegim votació
+    let joke = { 'joke': p2 , 'Score' : score, 'date':text} ;
+    reportJokes.push( [joke,  1]);
+    console.table(reportJokes);
+}
+
