@@ -1,4 +1,5 @@
 var reportJokes = [];
+var codiComarca = "";
 
 // Exercici 1 i 2
 function nouacudit() {
@@ -73,38 +74,59 @@ function meteocat() {
     //var contenido = document.querySelector('#contenido');
 
     fetch('https://api.meteo.cat/referencia/v1/municipis', {
-        headers: { 
-            'X-Api-Key': 'ydQzSUWjaR9EgbsPiiLmv7nhgY9UKSqqS7WhK5tf', }
+        headers: {
+            'X-Api-Key': 'ydQzSUWjaR9EgbsPiiLmv7nhgY9UKSqqS7WhK5tf',
+        }
     })
-        .then(r => r.json())
-        .then(data => {
+        .then(response => response.json())
+        .then(json => {
+            console.log(json);
+
+            //Afegim un option a la llista de comarques, per afegir el codi de mataró
+            const llista = document.querySelector("#comarca"); //Obtenemos el select            
+            //let nuevaOpcion = document.createElement("option");
+            //nuevaOpcion.value = "080193";
+            //nuevaOpcion.text = "Barcelona";  
+            //llista.add(nuevaOpcion);
+            let nuevaOpcion = document.createElement("option");
+            nuevaOpcion.value = "081213";
+            nuevaOpcion.text = "Mataró";  
+            nuevaOpcion.selected;
+            llista.add(nuevaOpcion);
+            
+            //Filtrem per mataró            
+           var codiSeleccionat= llista.options[0].text;
+            const comarca = json.find(json => json.nom == "Mataró");
+            
+            codiComarca = comarca.codi
+            console.log(comarca.codi)
+            console.log(comarca.nom)
+
+            //URLComarca = "https://api.meteo.cat/pronostic/v1/municipal/" + codiComarca;
+            URLComarca = "https://api.meteo.cat/pronostic/v1/municipal/081213";
+            fetch(URLComarca, {
+                headers: {
+                    'X-Api-Key': 'ydQzSUWjaR9EgbsPiiLmv7nhgY9UKSqqS7WhK5tf',
+                }
+            })
+                .then(response => response.json())
+                .then(json => {
+                    console.log(json);
+                    const dies_temps = json.dies.map(dies => `<li>${dies.data} - temperatura max: ${dies.variables.tmax.valor} - temperatura min: ${dies.variables.tmin.valor}</li>`).join("\n");
+                    const temps = document.getElementById("temps");
+                    temps.innerHTML = dies_temps;
+
+                    /*    console.log(dies_temps);
+                        dies_temps.forEach((item) => {
+                            console.log("dia: " + item.data);
+                            console.log("Temperatura max:" + item.variables.tmax.valor);
+                            console.log("Temperatura min:" + item.variables.tmin.valor);
+                        })
+                    */
+                })
+
         })
 
-
-
-    //const primseUrl = 'https://api.openweathermap.org/data';
-    // const primseUrl = '';
-    // el fecth devuelve una promesa
-
-    /* fetch(primseUrl)
-         .then(response => response.json())
-         .then(json => {
-             // This is the JSON from our response, accedim al node on esta l'acudit.               
-             //let temps = json.attachments[0].text;
- 
-             // const p1 = document.createElement("p");
-             // p1.id = "el temps";
-             // const p1_content = document.createTextNode(temps);
-             // p1.appendChild(p1_content);
-             // const p2 = document.getElementById("eltemps");
-             // const parentDiv = p2.parentNode;
-             // parentDiv.replaceChild(p1, p2);
- 
-             console.log(json);
-         }).catch(function (err) {
-             // There was an error
-             console.warn('Something went wrong.', err);
-         });*/
 
 }
 
