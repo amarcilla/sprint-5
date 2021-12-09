@@ -1,6 +1,7 @@
 var reportJokes = [];
 var codiComarca = "";
 
+// Exercici 1 i 2 i 5
 function fetchPromise(url, source) {
     //Al fer sol·licitud HTTP com a operació asíncrona, Fetch no retornarà cap dada, tornarà una promesa de resposta.     
     const fetchPromise = fetch(url);
