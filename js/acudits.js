@@ -1,13 +1,9 @@
 var reportJokes = [];
 var codiComarca = "";
 
-// Exercici 1 i 2
-function nouacudit() {
-
-    let promiseUrl = 'https://icanhazdadjoke.com/slack';
-
+function fetchPromise(url, source) {
     //Al fer sol·licitud HTTP com a operació asíncrona, Fetch no retornarà cap dada, tornarà una promesa de resposta.     
-    const fetchPromise = fetch("https://icanhazdadjoke.com/slack");
+    const fetchPromise = fetch(url);
 
     //Quan registrem la resposta, mostrarà que aquesta promesa està en estat pendent. 
     //Això vol dir que la resposta HTTP que esperem es farà, 
@@ -16,16 +12,29 @@ function nouacudit() {
     //Un cop resolta la Promesa, ja no pot canviar d'estat.
     console.log(fetchPromise);
 
+
     // Utilitzem el mètode Promise.prototype.then per retornar una resposta un cop s'hagi complert la nostra promesa.    
     // Estem registrant la resposta, per veure quina informació rebem de l'API.     
-    //hauríem d'obtenir un objecte de resposta amb informació que inclou capçaleres, cos, tipus i fins i tot codi d'estat.
+    // hauríem d'obtenir un objecte de resposta amb informació que inclou capçaleres, cos, tipus i fins i tot codi d'estat.
     fetchPromise.then(response => response.json())
         //Quan rebem resposta de q l'API funciona, continuem per obtenir el cos de la resposta => Cridant el mètode json().
         //el mètode json(), també és asíncron, per tant tb retorna una Promesa. 
         .then(json => {
             // This is the JSON from our response, accedim al node on esta l'acudit.               
             console.log(json);
-            let acudit = json.attachments[0].text;
+            let acudit = "";
+            switch (source) {
+                case 0:
+                    acudit = json.attachments[0].text;
+                    break;
+                case 1:
+                    acudit = json.value;
+                    break;
+                default:
+                    console.log(`Sorry, There is an error with the API. Contact with Admin`);
+                    exit;
+            }
+
 
             // Fiquem l'acudit al <p="acudit">
             // Fem tota aquest historia de p1 i p2.. per tal de que no acumuli acudits a la p.
@@ -56,6 +65,23 @@ function nouacudit() {
         });
 }
 
+
+// Exercici 1 i 2 i 5
+function nouacudit() {
+
+    // Retorna 0 o 1
+    const fuenteChistes = Math.round(Math.random());
+    
+    if (fuenteChistes == 0)
+        url = "https://icanhazdadjoke.com/slack"
+    else
+        url = "https://api.chucknorris.io/jokes/random"
+
+    // cridem a una de les dues APIS.. segons el random 0 o 1
+    fetchPromise(url, fuenteChistes);
+
+}
+
 // Exercici 3
 function puntuaAcudit(score) {
     // La data  valoració en format ISO.https://www.w3schools.com/Jsref/jsref_toisostring.asp
@@ -72,7 +98,6 @@ function puntuaAcudit(score) {
 function meteocat() {
 
     //var contenido = document.querySelector('#contenido');
-
     fetch('https://api.meteo.cat/referencia/v1/municipis', {
         headers: {
             'X-Api-Key': 'ydQzSUWjaR9EgbsPiiLmv7nhgY9UKSqqS7WhK5tf',
@@ -84,20 +109,20 @@ function meteocat() {
 
             //Afegim un option a la llista de comarques, per afegir el codi de mataró
             const llista = document.querySelector("#comarca"); //Obtenemos el select            
-            //let nuevaOpcion = document.createElement("option");
-            //nuevaOpcion.value = "080193";
-            //nuevaOpcion.text = "Barcelona";  
-            //llista.add(nuevaOpcion);
             let nuevaOpcion = document.createElement("option");
+            nuevaOpcion.value = "080193";
+            nuevaOpcion.text = "Barcelona";
+            llista.add(nuevaOpcion);
+            nuevaOpcion = document.createElement("option");
             nuevaOpcion.value = "081213";
-            nuevaOpcion.text = "Mataró";  
+            nuevaOpcion.text = "Mataró";
             nuevaOpcion.selected;
             llista.add(nuevaOpcion);
-            
+
             //Filtrem per mataró            
-           var codiSeleccionat= llista.options[0].text;
+            var codiSeleccionat = llista.options[1].text;
             const comarca = json.find(json => json.nom == "Mataró");
-            
+
             codiComarca = comarca.codi
             console.log(comarca.codi)
             console.log(comarca.nom)
