@@ -11,38 +11,26 @@
 <body onload="javascript:meteocat()"">
     <p>PREVISIÓ DE TEMPS</p>
     <form>
-        <select id=" comarca" name="comarca">
+        <select id="comarca" name="comarca">
     </select>
     </form>
-    <div>
+    <div id="temps">
         <ul></ul>
     </div>
 
 
 
-    <div class="temps">
-        <div class="temps-text">
+    <div class="fons">
+        <div class="fons-text">
             <h3> Prepara't per riure?</h3>
             <div id="app">
                 <p id="acudit"> </p>
             </div>
-            <div class="">
-                <p class="">
-                    <a href="" class="" onclick="javascript:puntuaAcudit(1)">
-                        <i class="far fa-grin-beam-sweat fa-3x"></i>
-                    </a>
-                    <a href="" class="">
-                        <i class="far fa-grin-beam fa-3x"></i>
-                    </a>
-                    <a href="" class="">
-                        <i class="far fa-grin-hearts fa-3x"></i>
-                    </a>
-
-                    <button class="buttonEmoji" ">
-
-                    </button>
-                    <button class="buttonEmoji" onclick="javascript:puntuaAcudit(2)">2</button>
-                    <button class="buttonEmoji" onclick="javascript:puntuaAcudit(3)">3</button>
+            <div >
+                <p >
+                    <a href="javascript:puntuaAcudit(1)" class="emoji"><i class="far fa-grin-beam-sweat fa-3x"></i></a>
+                    <a href="javascript:puntuaAcudit(2)" class="emoji"><i class="far fa-grin-beam fa-3x"></i></a>
+                    <a href="javascript:puntuaAcudit(3)" class="emoji"><i class="far fa-grin-hearts fa-3x"></i></a>
                 </p>
             </div>
 

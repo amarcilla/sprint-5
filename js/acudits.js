@@ -94,6 +94,7 @@ function puntuaAcudit(score) {
     let joke = { 'joke': p2, 'Score': score, 'date': text };
     reportJokes.push(joke);
     console.table(reportJokes);
+    alert('Acabes de puntuar l\'acudit amb: ' + score)
 }
 
 function meteocat() {
@@ -110,7 +111,7 @@ function meteocat() {
 
             //Afegim un option a la llista de comarques, per afegir el codi de mataró
             const llista = document.querySelector("#comarca"); //Obtenemos el select            
-            nuevaOpcion = document.createElement("option");
+            let nuevaOpcion = document.createElement("option");
             nuevaOpcion.value = "081213";
             nuevaOpcion.text = "Mataró";
             llista.add(nuevaOpcion);
