@@ -1,0 +1,47 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.temps {
+    background-image: url( '/images/fons01.svg' );
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:contain;
+    margin-left: 250px ;
+    position: absolute;
+    height: 100%;
+    width: 50%;
+}
+  
+.temps-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: solid;
+    color: black;
+    background-color: purple;
+    border: none;
+    border-radius: 15px;
+  }
+
+  .buttonEmoji {
+    height: 32px;
+    padding-left: 36px;
+    padding-right: 10px;
+    border: 1px solid #000000;
+    background: #ff9900 url("http://placehold.it/16x16") no-repeat 10px center;
+    cursor: pointer;
+  }
+

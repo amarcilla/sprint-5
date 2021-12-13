@@ -110,26 +110,21 @@ function meteocat() {
 
             //Afegim un option a la llista de comarques, per afegir el codi de mataró
             const llista = document.querySelector("#comarca"); //Obtenemos el select            
-            let nuevaOpcion = document.createElement("option");
-            nuevaOpcion.value = "080193";
-            nuevaOpcion.text = "Barcelona";
-            llista.add(nuevaOpcion);
             nuevaOpcion = document.createElement("option");
             nuevaOpcion.value = "081213";
             nuevaOpcion.text = "Mataró";
-            nuevaOpcion.selected;
             llista.add(nuevaOpcion);
-
+          
             //Filtrem per mataró            
-            var codiSeleccionat = llista.options[1].text;
+            var codiSeleccionat = llista.options[0].text;
             const comarca = json.find(json => json.nom == "Mataró");
 
             codiComarca = comarca.codi
             console.log(comarca.codi)
             console.log(comarca.nom)
 
-            //URLComarca = "https://api.meteo.cat/pronostic/v1/municipal/" + codiComarca;
-            URLComarca = "https://api.meteo.cat/pronostic/v1/municipal/081213";
+            URLComarca = "https://api.meteo.cat/pronostic/v1/municipal/" + codiComarca;
+            //URLComarca = "https://api.meteo.cat/pronostic/v1/municipal/081213";
             fetch(URLComarca, {
                 headers: {
                     'X-Api-Key': 'ydQzSUWjaR9EgbsPiiLmv7nhgY9UKSqqS7WhK5tf',
