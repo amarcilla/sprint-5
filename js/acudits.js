@@ -1,8 +1,9 @@
 var reportJokes = [];
 var codiComarca = "";
+var numacudit = 0; //per controlar que els acudits siguin únics.
 
 // Exercici 1 i 2 i 5
-function fetchPromise(url, source) {
+function fetchPromise(url, source, numacudit) {
     //Al fer sol·licitud HTTP com a operació asíncrona, Fetch no retornarà cap dada, tornarà una promesa de resposta.     
     const fetchPromise = fetch(url);
 
@@ -70,8 +71,8 @@ function fetchPromise(url, source) {
 // Exercici 1 i 2 i 5
 function nouacudit() {
     // canviem imatge de fons de la capa segons random de 0 a 9
-    let numImage=Math.floor(Math.random() * 10);
-    document.getElementById("fons").style.backgroundImage = "url('/images/fons"+ numImage +".svg')";
+    let numImage = Math.floor(Math.random() * 10);
+    document.getElementById("fons").style.backgroundImage = "url('/images/fons" + numImage + ".svg')";
 
     // Retorna 0 o 1
     const fuenteChistes = Math.round(Math.random());
@@ -81,8 +82,9 @@ function nouacudit() {
     else
         url = "https://api.chucknorris.io/jokes/random"
 
+    numacudit = numacudit + 1;
     // cridem a una de les dues APIS.. segons el random 0 o 1
-    fetchPromise(url, fuenteChistes);
+    fetchPromise(url, fuenteChistes, numacudit);
 
 }
 
@@ -94,10 +96,18 @@ function puntuaAcudit(score) {
     //The . innerHTML property refers to the literal HTML markup that is, once assigned, interpreted and incorporated into the DOM (Document Object Model) for the current document. ... value property simply refers to the content of typically an HTML input control,
     const p2 = document.getElementById("acudit").innerHTML;
     // afegim votació
-    let joke = { 'joke': p2, 'Score': score, 'date': text };
-    reportJokes.push(joke);
-    console.table(reportJokes);
-    alert('Acabes de puntuar l\'acudit amb: ' + score)
+
+    if ((reportJokes.length != 0) && (reportJokes[reportJokes.length - 1].idacudit == numacudit)) {
+        console.log(reportJokes.length);
+        console.log(reportJokes[reportJokes.length - 1].idacudit);
+        console.log("chiste repetit");
+    } else {
+        let joke = { idacudit: numacudit, 'joke': p2, 'Score': score, 'date': text };
+        reportJokes.push(joke);
+        console.table(reportJokes);
+    }
+
+
 }
 
 // exercici 4, 6
