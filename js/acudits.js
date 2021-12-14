@@ -100,6 +100,7 @@ function puntuaAcudit(score) {
     alert('Acabes de puntuar l\'acudit amb: ' + score)
 }
 
+// exercici 4, 6
 function meteocat() {
 
     //var contenido = document.querySelector('#contenido');
