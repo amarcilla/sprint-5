@@ -2,8 +2,14 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#temps {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+}
+
 .fons {
-    background-image: url( '/images/fons01.svg' );
+    background-image: url( '/images/fons4.svg' );
     background-position: center;
     background-repeat: no-repeat;
     background-size:contain;

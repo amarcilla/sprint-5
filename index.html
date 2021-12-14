@@ -9,25 +9,21 @@
 </head>
 
 <body onload="javascript:meteocat()"">
-    <p>PREVISIÓ DE TEMPS</p>
-    <form>
-        <select id="comarca" name="comarca">
-    </select>
-    </form>
+    <div class="">
+    <form>PREVISIÓ DE TEMPS&nbsp;<select id="comarca" name="comarca"></select></form>
+
     <div id="temps">
         <ul></ul>
     </div>
 
-
-
-    <div class="fons">
+    <div class="fons" id="fons">
         <div class="fons-text">
             <h3> Prepara't per riure?</h3>
             <div id="app">
                 <p id="acudit"> </p>
             </div>
-            <div >
-                <p >
+            <div>
+                <p>
                     <a href="javascript:puntuaAcudit(1)" class="emoji"><i class="far fa-grin-beam-sweat fa-3x"></i></a>
                     <a href="javascript:puntuaAcudit(2)" class="emoji"><i class="far fa-grin-beam fa-3x"></i></a>
                     <a href="javascript:puntuaAcudit(3)" class="emoji"><i class="far fa-grin-hearts fa-3x"></i></a>
@@ -39,7 +35,7 @@
             </div>
         </div>
     </div>
-
+</div>
 
     <script src="./js/acudits.js"></script>
 </body>

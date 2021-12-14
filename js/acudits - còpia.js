@@ -69,13 +69,10 @@ function fetchPromise(url, source) {
 
 // Exercici 1 i 2 i 5
 function nouacudit() {
-    // canviem imatge de fons de la capa segons random de 0 a 9
-    let numImage=Math.floor(Math.random() * 10);
-    document.getElementById("fons").style.backgroundImage = "url('/images/fons"+ numImage +".svg')";
 
     // Retorna 0 o 1
     const fuenteChistes = Math.round(Math.random());
-
+    
     if (fuenteChistes == 0)
         url = "https://icanhazdadjoke.com/slack"
     else
@@ -118,7 +115,7 @@ function meteocat() {
             nuevaOpcion.value = "081213";
             nuevaOpcion.text = "Mataró";
             llista.add(nuevaOpcion);
-
+          
             //Filtrem per mataró            
             var codiSeleccionat = llista.options[0].text;
             const comarca = json.find(json => json.nom == "Mataró");
@@ -137,18 +134,12 @@ function meteocat() {
                 .then(response => response.json())
                 .then(json => {
                     console.log(json);
-                    const dies_temps = json.dies.map((dia, i) => {
-                        let tempMax;
-                        let tempMin;
-                        let icon = "<i class='fas fa-sun'></i>"
-                        let pluja = parseFloat(dia.variables.precipitacio.valor);
-                        if (pluja > 10) icon = "<i class='fas fa-cloud'></i>"
-                        if (pluja > 25) icon = "<i class='fas fa-cloud-rain'></i>"
-                        tempMax = "<i class='fas fa-temperature-high'></i>" + dia.variables.tmax.valor
-                        tempMin = "<i class='fas fa-temperature-low'></i>" + dia.variables.tmin.valor
-                        return dia.data + " | " + tempMax + " | " + tempMin + " | " + icon + "<br>"
-                    }).join("\n")
-
+                    const dies_temps = json.dies.map(dies => 
+                        `<li>
+                         ${dies.data} - 
+                         ${dies.variables.precipitacio.valor} -
+                         <i class="fas fa-temperature-high"></i> ${dies.variables.tmax.valor} - 
+                         <i class="fas fa-temperature-low"></i> ${dies.variables.tmin.valor}</li>`).join("\n");
 
                     const temps = document.getElementById("temps");
                     temps.innerHTML = dies_temps;
@@ -161,6 +152,7 @@ function meteocat() {
                         })
                     */
                 })
+
         })
 
 
